@@ -4,19 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io/fs"
-	"os"
 )
-
-func demoAs() {
-	if _, err := os.Open("non-existing"); err != nil {
-		var pathError *fs.PathError
-		if errors.As(err, &pathError) {
-			fmt.Println("Failed at path:", pathError.Path)
-		} else {
-			fmt.Println(err)
-		}
-	}
-}
 
 type MyError struct {
 	message string
@@ -35,7 +23,6 @@ func main() {
 	// 1. == 判断的是对象是否相等，与其字符串值无关
 	// 2. Is 可以被自定义
 	// 3. Unwrap 怎能解链式的情况，不能解树状
-
 	// New && fmt.Errors() && %w
 	{
 		fmt.Println("test1====")
